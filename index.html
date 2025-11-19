@@ -1,0 +1,143 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Student's Expense Tracker</title>
+
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.9.3/dist/html2pdf.bundle.min.js"></script>
+
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <div class="page">
+
+    <aside class="panel left-panel">
+      <img src="college-logo.jpeg" alt="College Logo" onerror="this.style.display='none'">
+      <h2>Rajiv Gandhi Institute of Technology</h2>
+      <p>Department of Computer Engineering</p>
+      <p class="muted">Mini Project: Student's Expense Tracker Web Application</p>
+      <p class="small-note">Built by: Vaibhav, Zaid, Vedant, Dnyaneshwar</p>
+    </aside>
+
+    <main class="container">
+      <h1>Student's Expense Tracker</h1>
+
+      <div class="balance-container">
+        <div class="card">
+          <h4>Your Balance</h4>
+          <p id="balance" class="value"></p>
+        </div>
+        <div class="card">
+          <h4>Total Income</h4>
+          <p id="total-income" class="value value-income"></p>
+        </div>
+        <div class="card">
+          <h4>Total Expense</h4>
+          <p id="total-expense" class="value value-expense"></p>
+        </div>
+      </div>
+
+      <div class="form-card">
+        <form id="tx-form">
+            <h3>Add New Transaction</h3>
+            
+            <div class="row">
+                
+                <div>
+                    <label for="type">Type</label>
+                    <select id="type">
+                        <option value="expense">Expense</option>
+                        <option value="income">Income</option>
+                    </select>
+                </div>
+                
+                <div>
+                    <label for="category">Category</label>
+                    <select id="category">
+                        <option value="" disabled selected>Select Category</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label for="date">Date</label>
+                    <input type="date" id="date" required />
+                </div>
+            </div>
+
+            <div class="row">
+                <div>
+                    <label for="description">Description</label>
+                    <input type="text" id="description" placeholder="Enter description..." required />
+                </div>
+                
+                <div>
+                    <label for="amount">Amount (INR)</label>
+                    <input type="number" id="amount" placeholder="Enter amount..." required />
+                </div>
+            </div>
+
+            <div class="row form-actions">
+                <button type="submit" id="add-btn">Add Transaction</button>
+                <button type="reset" id="reset-btn" class="secondary">Reset Form</button>
+            </div>
+        </form>
+      </div>
+
+      <div class="filter-card">
+        <h3>Filter Transactions</h3>
+        <div class="filters">
+          <input type="text" id="search-text" placeholder="Search description..." />
+          <select id="filter-category">
+            <option value="all">All Categories</option>
+          </select>
+          <input type="date" id="filter-from" />
+          <input type="date" id="filter-to" />
+          <button id="apply-filters">Apply Filters</button>
+          <button id="clear-filters" class="secondary">Clear Filters</button>
+        </div>
+      </div>
+
+      <div id="report-area">
+        <div class="history">
+          <h3>Transaction History</h3>
+          <ul id="list"></ul>
+        </div>
+
+        <div class="analytics">
+          <div class="chart-card">
+            <canvas id="pieChart" aria-label="Expense by category" role="img"></canvas>
+          </div>
+          <div class="chart-card">
+            <canvas id="lineChart" aria-label="Balance over time" role="img"></canvas>
+          </div>
+        </div>
+
+        <div class="export-row">
+          <button id="export-csv">Export CSV</button>
+          <button id="download-pdf">Download PDF</button>
+          <button id="clear-all" class="danger">Clear All Data</button>
+        </div>
+        <p class="small-note">Tip: Use the date selector when adding transactions to build monthly reports.</p>
+      </div>
+    </main>
+
+    <aside class="panel right-panel">
+      <h3>Project Members</h3>
+      <ul class="members">
+        <li>Vaibhav Sable (Roll No. 616)</li>
+        <li>Zaid Chouhan (Roll No. 602)</li>
+        <li>Vedant Puradkar (Roll No. 615)</li>
+        <li>Dnyaneshwar Sangle (Roll No. 618)</li>
+      </ul>
+      <p class="guide">Submitted to:<br><em>Dr. Yograj S. Patil</em></p>
+      <p class="muted small-note">This local app saves data in your browser. Clear data if you want a fresh start.</p>
+    </aside>
+  </div>
+  
+  <script src="script.js"></script>
+</body>
+</html>
