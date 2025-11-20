@@ -329,18 +329,17 @@ button.danger{
   .card h4 { font-size: 12px; }
   .card .value { font-size: 18px; }
 
-  /* 2. Form Inputs (Stacking for safety) */
+  /* 2. Form Inputs */
   .row {
     display: flex;
-    flex-direction: column; /* Stack inputs vertically */
+    flex-direction: column;
     gap: 10px;
   }
   .row > div {
     width: 100%; 
     min-width: auto;
   }
-
-  /* Fix: Make Action Buttons Full Width & Stacked */
+  
   .form-actions {
     flex-direction: column;
     gap: 10px;
@@ -349,15 +348,19 @@ button.danger{
     width: 100%;
   }
 
-  /* 3. Filter Section (Stacking to fix overflow) */
+  /* 3. Filter Section (The Fix for Huge Boxes) */
   .filters {
     display: flex;
-    flex-direction: column; /* Forces everything into one neat column */
+    flex-direction: column;
     gap: 10px;
   }
-  /* Ensure all filter inputs take full width */
+  
+  /* FIX: 'flex: none' stops them from being 120px tall */
   .filters input, .filters select, .filters button {
     width: 100%;
+    flex: none; 
+    height: auto; 
+    padding: 10px 12px; /* Normal comfy padding */
   }
 
   /* 4. General Spacing */
