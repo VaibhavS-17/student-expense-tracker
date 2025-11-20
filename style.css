@@ -301,6 +301,7 @@ button.danger{
 #list .tx-amount.expense { color: var(--danger); }
 
 /* ---- RESPONSIVE MOBILE OPTIMIZATIONS ---- */
+/* Applied to Tablets and Mobile Phones (up to 768px width) */
 
 @media (max-width: 980px){
   .page{ 
@@ -313,7 +314,8 @@ button.danger{
   .container{ width: 100%; }
 }
 
-@media (max-width: 480px){
+/* CHANGE: Increased from 480px to 768px to catch ALL phones */
+@media (max-width: 768px){
   
   /* 1. Compact Summary Cards (Grid Layout) */
   .balance-container {
@@ -327,14 +329,13 @@ button.danger{
     background: #f8fcfd;
   }
   .card {
-    flex: none; /* Disable flex behavior in favor of grid */
+    flex: none; 
     padding: 12px;
   }
   .card h4 { font-size: 12px; }
   .card .value { font-size: 18px; }
 
   /* 2. Side-by-Side Form Inputs */
-  /* Allow wrapping but keep them side-by-side where possible */
   .row {
     display: flex;
     flex-wrap: wrap;
@@ -342,7 +343,7 @@ button.danger{
   }
   
   .row > div {
-    flex: 1 1 45%; /* Take up roughly half width */
+    flex: 1 1 45%; /* Forces them to share the line */
     min-width: 130px;
   }
 
@@ -375,7 +376,7 @@ button.danger{
     height: 250px; 
   }
   
-  /* 6. Transaction List */
+  /* 6. Transaction List Compact */
   .tx-left {
     flex-direction: column;
     align-items: flex-start;
