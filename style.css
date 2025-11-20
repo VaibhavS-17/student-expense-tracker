@@ -301,7 +301,6 @@ button.danger{
 #list .tx-amount.expense { color: var(--danger); }
 
 /* ---- RESPONSIVE MOBILE OPTIMIZATIONS ---- */
-/* Applied to Tablets and Mobile Phones (up to 768px width) */
 
 @media (max-width: 980px){
   .page{ 
@@ -314,80 +313,67 @@ button.danger{
   .container{ width: 100%; }
 }
 
-/* CHANGE: Increased from 480px to 768px to catch ALL phones */
 @media (max-width: 768px){
   
-  /* 1. Compact Summary Cards (Grid Layout) */
+  /* 1. Compact Summary Cards */
   .balance-container {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* Two equal columns */
+    grid-template-columns: 1fr 1fr;
     gap: 10px;
   }
-  /* Make the Main Balance card span across both columns */
   .card:first-child {
     grid-column: 1 / -1; 
     background: #f8fcfd;
   }
-  .card {
-    flex: none; 
-    padding: 12px;
-  }
+  .card { flex: none; padding: 12px; }
   .card h4 { font-size: 12px; }
   .card .value { font-size: 18px; }
 
-  /* 2. Side-by-Side Form Inputs */
+  /* 2. Form Inputs (Stacking for safety) */
   .row {
     display: flex;
-    flex-wrap: wrap;
+    flex-direction: column; /* Stack inputs vertically */
     gap: 10px;
   }
-  
   .row > div {
-    flex: 1 1 45%; /* Forces them to share the line */
-    min-width: 130px;
+    width: 100%; 
+    min-width: auto;
   }
 
-  /* Force Description input to be full width */
-  .row > div:has(#description) {
-    flex: 1 1 100%;
+  /* Fix: Make Action Buttons Full Width & Stacked */
+  .form-actions {
+    flex-direction: column;
+    gap: 10px;
   }
-
-  /* 3. Tighter Form & Filter Cards */
-  .form-card, .filter-card {
-    padding: 15px; 
-  }
-  
-  /* 4. Fix Filter Section */
-  .filters {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 8px;
-  }
-  .filters input#search-text {
-    grid-column: 1 / -1; /* Search bar full width */
-  }
-  .filters button {
+  .form-actions button {
     width: 100%;
   }
 
-  /* 5. Compact Charts */
-  .chart-card {
-    min-height: auto;
-    height: 250px; 
+  /* 3. Filter Section (Stacking to fix overflow) */
+  .filters {
+    display: flex;
+    flex-direction: column; /* Forces everything into one neat column */
+    gap: 10px;
   }
+  /* Ensure all filter inputs take full width */
+  .filters input, .filters select, .filters button {
+    width: 100%;
+  }
+
+  /* 4. General Spacing */
+  .form-card, .filter-card { padding: 15px; }
   
-  /* 6. Transaction List Compact */
+  /* 5. Compact Charts */
+  .chart-card { height: 250px; }
+  
+  /* 6. Transaction List */
   .tx-left {
     flex-direction: column;
     align-items: flex-start;
     gap: 2px;
   }
-  .tx-meta {
-    font-size: 11px;
-  }
-  #list li {
-    padding: 10px;
-  }
+  .tx-meta { font-size: 11px; }
+  #list li { padding: 10px; }
 }
 
 /* Remove up/down arrows from number inputs */
