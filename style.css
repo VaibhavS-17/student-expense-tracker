@@ -82,8 +82,8 @@ body{
   cursor: default;
 }
 .card:hover {
-  box-shadow: 0 10px 30px rgba(20, 30, 40, 0.12); /* Slightly stronger shadow */
-  transform: translateY(-2px); /* Lift effect */
+  box-shadow: 0 10px 30px rgba(20, 30, 40, 0.12);
+  transform: translateY(-2px);
 }
 .card h4{
   font-size:14px;
@@ -223,7 +223,8 @@ button.danger{
   margin-bottom:15px;
   color:var(--accent-2);
 }
-/* Animation for new items */
+
+/* Animation Definition */
 @keyframes slideIn {
   from { opacity: 0; transform: translateY(10px); }
   to { opacity: 1; transform: translateY(0); }
@@ -240,6 +241,7 @@ button.danger{
   background: linear-gradient(180deg,#fff,#fbfbfb);
   box-shadow:0 6px 16px rgba(18,30,40,0.04);
   border-left:6px solid transparent;
+  /* FIXED SPELLING: slideIn, not slideln */
   animation: slideIn 0.3s ease forwards;
 }
 #list li:hover {
@@ -300,7 +302,15 @@ button.danger{
 #list .tx-amount.income { color: #2ea44f; }
 #list .tx-amount.expense { color: var(--danger); }
 
+/* Remove up/down arrows from number inputs */
+input[type=number]::-webkit-inner-spin-button, 
+input[type=number]::-webkit-outer-spin-button { 
+  -webkit-appearance: none; 
+  margin: 0; 
+}
+
 /* ---- RESPONSIVE MOBILE OPTIMIZATIONS ---- */
+/* Applied to Tablets and Mobile Phones (up to 768px width) */
 
 @media (max-width: 980px){
   .page{ 
@@ -315,7 +325,7 @@ button.danger{
 
 @media (max-width: 768px){
   
-  /* 1. Compact Summary Cards */
+  /* 1. Compact Summary Cards (Grid Layout) */
   .balance-container {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -365,7 +375,7 @@ button.danger{
   /* 4. General Spacing */
   .form-card, .filter-card { padding: 15px; }
   
-  /* 5. Compact Charts - FIXED OVERFLOW HERE */
+  /* 5. Compact Charts - FIXED for Mobile */
   .chart-card {
     height: 250px;    
     width: 100%;      
@@ -381,12 +391,4 @@ button.danger{
   }
   .tx-meta { font-size: 11px; }
   #list li { padding: 10px; }
-}
-
-
-/* Remove up/down arrows from number inputs */
-input[type=number]::-webkit-inner-spin-button, 
-input[type=number]::-webkit-outer-spin-button { 
-  -webkit-appearance: none; 
-  margin: 0; 
 }

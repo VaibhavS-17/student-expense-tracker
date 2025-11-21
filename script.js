@@ -1,4 +1,4 @@
-// script.js - Expense tracker logic (LocalStorage + Charts + Export)
+// script.js - Expense tracker logic (Fixed & Final)
 
 // ---- Select DOM elements ----
 const txForm = document.getElementById('tx-form');
@@ -29,7 +29,7 @@ const resetBtn = document.getElementById('reset-btn');
 let pieChart = null;
 let lineChart = null;
 
-// Define categories for a Student's Expense Tracker
+// Define categories
 const categories = {
   expense: ['Food', 'Travel', 'Books', 'Stationery', 'Entertainment', 'General', 'Other'],
   income: ['Pocket Money', 'Part-Time Job', 'Gift', 'Refund', 'Other Income']
@@ -65,17 +65,16 @@ function addTransaction(e) {
   e.preventDefault();
 
   const description = descriptionEl.value.trim();
-  const amount = Number(amountEl.value.trim()); // Ensure this converts correctly
+  const amount = Number(amountEl.value.trim());
   const category = categoryEl.value;
   const date = dateEl.value;
   const type = typeEl.value;
 
-  //  Added checks for amount: is it a valid number AND is it greater than zero?
   const isAmountValid = !isNaN(amount) && isFinite(amount) && amount > 0;
 
   if (description === '' || !isAmountValid || category === '') {
     alert('Please enter a valid description, amount, and category.');
-    return; // 🛑 Prevents transaction creation on invalid input
+    return;
   }
 
   const transaction = {
@@ -91,8 +90,8 @@ function addTransaction(e) {
   saveTransactions();
   renderTransactions();
   txForm.reset();
-  dateEl.value = new Date().toISOString().slice(0,10); // reset date to today
-  updateCategoryOptions(); // Reset category dropdown
+  dateEl.value = new Date().toISOString().slice(0,10); 
+  updateCategoryOptions();
 }
 
 function deleteTransaction(id) {
@@ -111,21 +110,16 @@ function editTransaction(id) {
   isEditing = true;
   editingId = id;
 
-  // Set form values for editing
   descriptionEl.value = transaction.description;
   amountEl.value = transaction.amount;
   typeEl.value = transaction.type;
   dateEl.value = transaction.date;
 
-  // Update categories based on type, then set the specific category
   updateCategoryOptions();
   categoryEl.value = transaction.category;
 
-  // Change button text and focus (UX polish)
   document.getElementById('add-btn').textContent = 'Update Transaction';
   document.getElementById('add-btn').classList.add('secondary');
-  
-  // Focus on the description for quick editing
   descriptionEl.focus();
 }
 
@@ -151,14 +145,13 @@ function updateTransaction() {
     saveTransactions();
     renderTransactions();
 
-    // Reset form state
     isEditing = false;
     editingId = null;
     txForm.reset();
     document.getElementById('add-btn').textContent = 'Add Transaction';
     document.getElementById('add-btn').classList.remove('secondary');
-    dateEl.value = new Date().toISOString().slice(0,10); // reset date to today
-    updateCategoryOptions(); // Reset category dropdown
+    dateEl.value = new Date().toISOString().slice(0,10); 
+    updateCategoryOptions(); 
   }
 }
 
@@ -172,7 +165,6 @@ function renderTransactions(txs = transactions) {
     const li = document.createElement('li');
     li.classList.add(t.type);
 
-    // Format amount with sign and color
     const sign = t.type === 'expense' ? '-' : '+';
     const amountClass = t.type;
     
@@ -204,7 +196,6 @@ function renderTransactions(txs = transactions) {
   updateCharts();
 }
 
-// ---- Summary and Balance ----
 function updateBalance() {
   const income = transactions.filter(t => t.type === 'income').reduce((acc, t) => acc + t.amount, 0);
   const expense = transactions.filter(t => t.type === 'expense').reduce((acc, t) => acc + t.amount, 0);
@@ -214,7 +205,6 @@ function updateBalance() {
   incomeEl.classList.remove('value-expense');
   incomeEl.classList.add('value-income');
 
-  // Ensures expense value is always red (value-expense)
   expenseEl.textContent = formatCurrency(expense);
   expenseEl.classList.remove('value-income'); 
   expenseEl.classList.add('value-expense');
@@ -228,9 +218,8 @@ function updateBalance() {
   }
 }
 
-// ---- Charts ----
+// ---- Charts (FIXED) ----
 function updateCharts() {
-  // Pie: expense by category (only expenses)
   const expenseItems = transactions.filter(t => t.type === 'expense');
   const catMap = {};
   expenseItems.forEach(t => { catMap[t.category] = (catMap[t.category] || 0) + Number(t.amount); });
@@ -247,27 +236,25 @@ function updateCharts() {
       datasets: [{
         data: pieData.length ? pieData : [1],
         backgroundColor: pieData.length 
-    ? ['#ff6b6b','#ffd166','#06d6a0','#4d96ff','#9b5de5','#f15bb5']
-    : ['#e2e8f0'], 
-  borderWidth: 0
+          ? ['#ff6b6b','#ffd166','#06d6a0','#4d96ff','#9b5de5','#f15bb5']
+          : ['#e2e8f0'], 
+        borderWidth: 0
       }]
     },
     options: { 
       responsive: true,
-      maintainAspectRatio: false, // 🛑 FIX: Prevents chart from getting too wide
+      maintainAspectRatio: false, // 🛑 Important for Mobile
       plugins: { legend: { position: 'bottom' } } 
     }
   });
 
-  // Line: balance over time (daily aggregated)
   const dateMap = {};
-  // sort transactions by date ascending
   const sorted = transactions.slice().sort((a,b) => new Date(a.date) - new Date(b.date));
   let running = 0;
   sorted.forEach(t => {
     const key = t.date;
     running += (t.type === 'income' ? Number(t.amount) : -Number(t.amount));
-    dateMap[key] = running; // last running for that date
+    dateMap[key] = running; 
   });
 
   const lineLabels = Object.keys(dateMap);
@@ -291,21 +278,17 @@ function updateCharts() {
     },
     options: { 
       responsive: true,
-      maintainAspectRatio: false, // 🛑 FIX: Prevents chart from getting too wide
+      maintainAspectRatio: false, // 🛑 Important for Mobile
       scales: { y: { beginAtZero: false } }, 
       plugins: { legend: { display: false } } 
     }
   });
 }
 
-
-// ---- Category Handling ----
 function updateCategoryOptions() {
   const currentType = typeEl.value;
   const cats = categories[currentType];
   
-  // Update the form category dropdown
-  // FIX: Removed 'selected' from the placeholder option to force a valid selection.
   categoryEl.innerHTML = '<option value="" disabled>Select Category</option>';
   
   cats.forEach(cat => {
@@ -315,13 +298,10 @@ function updateCategoryOptions() {
     categoryEl.appendChild(option);
   });
   
-  // Set the first actual category as selected by default for better UX
-  // Only if there are options other than the placeholder
   if (categoryEl.options.length > 1) {
     categoryEl.options[1].selected = true;
   }
   
-  // Update the filter category dropdown (include all unique categories for filtering)
   filterCategory.innerHTML = '<option value="all">All Categories</option>';
   const allCategories = [...new Set([...categories.expense, ...categories.income])];
   allCategories.forEach(cat => {
@@ -332,14 +312,12 @@ function updateCategoryOptions() {
   });
 }
 
-// ---- Filters ----
 function applyFilters() {
   const sText = document.getElementById('search-text').value.toLowerCase();
   const cat = filterCategory.value;
   const from = filterFrom.value;
   const to = filterTo.value;
 
-  // OPTIMIZATION: Convert filter date strings to Date objects ONCE.
   const fromDate = from ? new Date(from) : null;
   const toDate = to ? new Date(to) : null;
   
@@ -347,9 +325,7 @@ function applyFilters() {
     if (sText && !t.description.toLowerCase().includes(sText)) return false;
     if (cat !== 'all' && t.category !== cat) return false;
     
-    // Compare the transaction date to the pre-calculated Date objects.
     const transactionDate = new Date(t.date);
-    
     if (fromDate && transactionDate < fromDate) return false;
     if (toDate && transactionDate > toDate) return false;
     
@@ -367,7 +343,6 @@ function clearFilters() {
   renderTransactions();
 }
 
-// ---- Export CSV ----
 function exportToCsv() {
   if (!transactions.length) { alert('No data to export'); return; }
   const header = ['id','date','description','category','type','amount'];
@@ -382,31 +357,24 @@ function exportToCsv() {
   URL.revokeObjectURL(url);
 }
 
-// ---- Download PDF ----
 function downloadPdf() {
   const element = document.getElementById('report-area');
-  
-  // 1. Options to make it look better
   const opt = {
     margin:       0.5,
     filename:     `Expense_Report_${new Date().toISOString().slice(0,10)}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2, useCORS: true }, // 'useCORS' is important for Charts!
+    html2canvas:  { scale: 2, useCORS: true }, 
     jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
   };
 
-  // 2. Hide the buttons during PDF generation
-  // We add a special class that html2pdf looks for to ignore elements
   const btnRow = document.querySelector('.export-row');
   if(btnRow) btnRow.setAttribute('data-html2canvas-ignore', 'true');
 
-  // 3. Generate
   html2pdf()
     .set(opt)
     .from(element)
     .save()
     .then(() => {
-      // Optional: Remove the ignore attribute after (not strictly necessary but clean)
       if(btnRow) btnRow.removeAttribute('data-html2canvas-ignore');
     })
     .catch(err => console.error("PDF Generation Error:", err));
@@ -423,14 +391,13 @@ function clearAllData() {
 resetBtn.addEventListener('click', () => { 
   txForm.reset(); 
   dateEl.value = new Date().toISOString().slice(0,10); 
-  // Ensure the form state is clean if reset during an edit attempt
   if (isEditing) {
     isEditing = false;
     editingId = null;
     document.getElementById('add-btn').textContent = 'Add Transaction';
     document.getElementById('add-btn').classList.remove('secondary');
   }
-  updateCategoryOptions(); // Re-populate categories after reset
+  updateCategoryOptions(); 
 });
 
 applyFiltersBtn.addEventListener('click', applyFilters);
@@ -439,14 +406,12 @@ exportCsvBtn.addEventListener('click', exportToCsv);
 downloadPdfBtn.addEventListener('click', downloadPdf);
 clearAllBtn.addEventListener('click', clearAllData);
 
-// Listen to type change to update categories
 typeEl.addEventListener('change', updateCategoryOptions);
 
-// Use delegated selector for search text element (in HTML it's id search-text)
 document.getElementById('search-text').addEventListener('input', function() {
   applyFilters();
 });
 
-// Initial render for categories and transactions
+// Initial render
 updateCategoryOptions();
 renderTransactions();

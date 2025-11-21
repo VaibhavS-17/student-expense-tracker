@@ -7,10 +7,9 @@
 
   <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 
-<script src="https://cdn.jsdelivr.net/npm/html2pdf.js@0.9.3/dist/html2pdf.bundle.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 
-<script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
-
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.10.1/html2pdf.bundle.min.js"></script>
 
   <link rel="stylesheet" href="style.css" />
 </head>
@@ -48,7 +47,6 @@
             <h3>Add New Transaction</h3>
             
             <div class="row">
-                
                 <div>
                     <label for="type">Type</label>
                     <select id="type">
@@ -56,14 +54,12 @@
                         <option value="income">Income</option>
                     </select>
                 </div>
-                
                 <div>
                     <label for="category">Category</label>
                     <select id="category">
                         <option value="" disabled selected>Select Category</option>
                     </select>
                 </div>
-
                 <div>
                     <label for="date">Date</label>
                     <input type="date" id="date" required />
@@ -75,7 +71,6 @@
                     <label for="description">Description</label>
                     <input type="text" id="description" placeholder="Enter description..." required />
                 </div>
-                
                 <div>
                     <label for="amount">Amount (INR)</label>
                     <input type="number" id="amount" placeholder="Enter amount..." required />
