@@ -348,26 +348,30 @@ button.danger{
     width: 100%;
   }
 
-  /* 3. Filter Section (The Fix for Huge Boxes) */
+  /* 3. Filter Section */
   .filters {
     display: flex;
     flex-direction: column;
     gap: 10px;
   }
   
-  /* FIX: 'flex: none' stops them from being 120px tall */
   .filters input, .filters select, .filters button {
     width: 100%;
     flex: none; 
     height: auto; 
-    padding: 10px 12px; /* Normal comfy padding */
+    padding: 10px 12px; 
   }
 
   /* 4. General Spacing */
   .form-card, .filter-card { padding: 15px; }
   
-  /* 5. Compact Charts */
-  .chart-card { height: 250px; }
+  /* 5. Compact Charts - FIXED OVERFLOW HERE */
+  .chart-card {
+    height: 250px;    
+    width: 100%;      
+    flex: 1 1 100%;   
+    min-width: 0;     
+  }
   
   /* 6. Transaction List */
   .tx-left {
@@ -378,6 +382,7 @@ button.danger{
   .tx-meta { font-size: 11px; }
   #list li { padding: 10px; }
 }
+
 
 /* Remove up/down arrows from number inputs */
 input[type=number]::-webkit-inner-spin-button, 

@@ -252,7 +252,11 @@ function updateCharts() {
   borderWidth: 0
       }]
     },
-    options: { plugins: { legend: { position: 'bottom' } } }
+    options: { 
+      responsive: true,
+      maintainAspectRatio: false, // 🛑 FIX: Prevents chart from getting too wide
+      plugins: { legend: { position: 'bottom' } } 
+    }
   });
 
   // Line: balance over time (daily aggregated)
@@ -285,9 +289,15 @@ function updateCharts() {
         pointRadius: 3
       }]
     },
-    options: { scales: { y: { beginAtZero: false } }, plugins: { legend: { display: false } } }
+    options: { 
+      responsive: true,
+      maintainAspectRatio: false, // 🛑 FIX: Prevents chart from getting too wide
+      scales: { y: { beginAtZero: false } }, 
+      plugins: { legend: { display: false } } 
+    }
   });
 }
+
 
 // ---- Category Handling ----
 function updateCategoryOptions() {
