@@ -95,8 +95,22 @@
           <select id="filter-category">
             <option value="all">All Categories</option>
           </select>
-          <input type="date" id="filter-from" />
-          <input type="date" id="filter-to" />
+                    <input 
+            type="text" 
+            id="filter-from" 
+            placeholder="From Date" 
+            onfocus="(this.type='date')" 
+            onblur="(this.type=this.value?'date':'text')" 
+          />
+          
+          <input 
+            type="text" 
+            id="filter-to" 
+            placeholder="To Date" 
+            onfocus="(this.type='date')" 
+            onblur="(this.type=this.value?'date':'text')" 
+          />
+
           <button id="apply-filters">Apply Filters</button>
           <button id="clear-filters" class="secondary">Clear Filters</button>
         </div>
