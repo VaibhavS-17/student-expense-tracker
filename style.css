@@ -333,15 +333,30 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 10px; /* Overrides the 28px from Desktop */
   }
   
-    /* 1. Tighter Header */
-  .header-row h1 {
-    font-size: 25px; /* Increased from 20px */
-    line-height: 1.2; /* Adds a little breathing room between lines */
-    margin-right: 10px; /* Ensures text doesn't touch the button */
-  }
+      /* 1. Header Layout Fix */
   .header-row {
+    display: flex;
+    justify-content: space-between;
+    align-items: center; /* This vertically centers the button */
     margin-bottom: 15px;
-    align-items: flex-start; /* Aligns title and button at the top nicely */
+    gap: 10px; /* Adds space between title and button */
+  }
+  
+  .header-row h1 {
+    font-size: 22px; /* Optimized size for mobile */
+    line-height: 1.2;
+    margin-right: auto; 
+    margin-bottom: 0; /* Remove bottom margin so it aligns with button */
+  }
+
+  /* Fix for the Button */
+  .theme-btn {
+    white-space: nowrap; /* Forces "Dark Mode" to stay on one line */
+    padding: 8px 12px;   /* Compact padding */
+    font-size: 12px;     
+    flex-shrink: 0;      /* Prevents the button from being squished */
+    height: auto;        /* Prevents stretching */
+    width: auto;
   }
 
   
