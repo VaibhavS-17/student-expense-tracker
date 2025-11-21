@@ -2,7 +2,7 @@
 
 A responsive web application designed to help students track their daily income and expenses efficiently. This project features dynamic charts, local storage support, and report generation.
 
-**🔗 Live Demo:** [https://vaibhavs-17.github.io/student-expense-tracker/](https://vaibhavs-17.github.io/student-expense-tracker/)
+**🔗 Live Demo:** [https://vaibhavs-17.github.io/students-expense-tracker/](https://vaibhavs-17.github.io/students-expense-tracker/)
 
 ## 🚀 Features
 
