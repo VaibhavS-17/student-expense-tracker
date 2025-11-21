@@ -1,4 +1,4 @@
-// script.js - Expense tracker logic (Fixed PDF & Mobile Charts)
+// script.js - Expense tracker logic (Final Mobile-Safe Version)
 
 // ---- Select DOM elements ----
 const txForm = document.getElementById('tx-form');
@@ -359,9 +359,9 @@ function exportToCsv() {
   URL.revokeObjectURL(url);
 }
 
-// ---- Download PDF (Fixed for Blank Page) ----
+// ---- Download Professional PDF (Mobile Safe) ----
 function downloadPdf() {
-  // 1. Scroll to top to ensure everything is captured
+  // 1. Scroll to top
   window.scrollTo(0, 0);
 
   const element = document.getElementById('report-area');
@@ -373,11 +373,11 @@ function downloadPdf() {
   // 3. Inject Custom Header (Title + Date)
   const titleDiv = document.createElement('div');
   titleDiv.innerHTML = `
-    <h1 style="text-align:center; color:#264653; margin-bottom:5px;">Expense Report</h1>
-    <p style="text-align:center; color:#6c7a86; margin-bottom:20px; font-size:12px;">
+    <h1 style="text-align:center; color:#000; margin-bottom:5px;">Expense Report</h1>
+    <p style="text-align:center; color:#444; margin-bottom:20px; font-size:12px;">
       Generated on: ${new Date().toLocaleDateString()} | Student's Expense Tracker
     </p>
-    <hr style="border:0; border-top:1px solid #eee; margin-bottom:20px;">
+    <hr style="border:0; border-top:1px solid #000; margin-bottom:20px;">
   `;
   
   // 4. Clone Balance Cards (So we see totals in the PDF!)
@@ -389,10 +389,14 @@ function downloadPdf() {
 
   // 5. Generate PDF
   const opt = {
-    margin:       0.5,
+    margin:       0.3,
     filename:     `Expense_Report_${new Date().toISOString().slice(0,10)}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2, useCORS: true, scrollY: 0 },
+    html2canvas:  { 
+      scale: 1,       // FIX: Prevents Mobile Crash
+      useCORS: true, 
+      scrollY: 0      // FIX: Prevents Blank PDF
+    },
     jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
   };
 
@@ -411,7 +415,6 @@ function downloadPdf() {
       if(element.contains(summaryClone)) element.removeChild(summaryClone);
     });
 }
-
 
 function clearAllData() {
   if (confirm('Are you sure you want to clear ALL transaction data? This action cannot be undone.')) {
