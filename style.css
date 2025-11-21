@@ -241,7 +241,6 @@ button.danger{
   background: linear-gradient(180deg,#fff,#fbfbfb);
   box-shadow:0 6px 16px rgba(18,30,40,0.04);
   border-left:6px solid transparent;
-  /* FIXED SPELLING: slideIn, not slideln */
   animation: slideIn 0.3s ease forwards;
 }
 #list li:hover {

@@ -1,4 +1,4 @@
-// script.js - Expense tracker logic (Fixed & Final)
+// script.js - Expense tracker logic (Fixed PDF & Mobile Charts)
 
 // ---- Select DOM elements ----
 const txForm = document.getElementById('tx-form');
@@ -218,7 +218,7 @@ function updateBalance() {
   }
 }
 
-// ---- Charts (FIXED) ----
+// ---- Charts (Fixed: Instant render for PDF) ----
 function updateCharts() {
   const expenseItems = transactions.filter(t => t.type === 'expense');
   const catMap = {};
@@ -243,7 +243,8 @@ function updateCharts() {
     },
     options: { 
       responsive: true,
-      maintainAspectRatio: false, // 🛑 Important for Mobile
+      maintainAspectRatio: false, // Important for Mobile
+      animation: { duration: 0 }, // FIX: No animation, so it shows in PDF
       plugins: { legend: { position: 'bottom' } } 
     }
   });
@@ -278,7 +279,8 @@ function updateCharts() {
     },
     options: { 
       responsive: true,
-      maintainAspectRatio: false, // 🛑 Important for Mobile
+      maintainAspectRatio: false,
+      animation: { duration: 0 }, // FIX: No animation, so it shows in PDF
       scales: { y: { beginAtZero: false } }, 
       plugins: { legend: { display: false } } 
     }
@@ -357,13 +359,21 @@ function exportToCsv() {
   URL.revokeObjectURL(url);
 }
 
+// ---- Download PDF (Fixed for Blank Page) ----
 function downloadPdf() {
+  // FORCE SCROLL TO TOP (Fixes blank screenshot issue)
+  window.scrollTo(0, 0);
+
   const element = document.getElementById('report-area');
   const opt = {
-    margin:       0.5,
+    margin:       0.3,
     filename:     `Expense_Report_${new Date().toISOString().slice(0,10)}.pdf`,
     image:        { type: 'jpeg', quality: 0.98 },
-    html2canvas:  { scale: 2, useCORS: true }, 
+    html2canvas:  { 
+      scale: 2, 
+      useCORS: true,
+      scrollY: 0  // Fix: Ignores current scroll position
+    }, 
     jsPDF:        { unit: 'in', format: 'a4', orientation: 'portrait' }
   };
 
