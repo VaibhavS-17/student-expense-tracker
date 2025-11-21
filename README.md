@@ -2,29 +2,44 @@
 
 A responsive web application designed to help students track their daily income and expenses efficiently. This project features dynamic charts, local storage support, and report generation.
 
-**🔗 Live Demo:** [[https://rgit-students-expense-tracker.netlify.app/](https://vaibhavs-17.github.io/student-expense-tracker/)](https://vaibhavs-17.github.io/student-expense-tracker/)
+**🔗 Live Demo:** [https://vaibhavs-17.github.io/student-expense-tracker/](https://vaibhavs-17.github.io/student-expense-tracker/)
 
 ## 🚀 Features
 
 * **Income & Expense Tracking:** Add transactions with dynamic categories.
 * **Visual Analytics:** Interactive Pie Charts and Line Graphs to visualize spending habits.
+* **Dark Mode:** Toggle between light and dark themes for better visibility.
 * **Data Persistence:** Uses LocalStorage so data is saved even after refreshing.
 * **Filtering:** Filter transactions by category, date range, or search description.
-* **Export Options:** Download reports as **PDF** or **CSV** files.
+* **Export Options:** Download reports as **PDF** (mobile-friendly) or **CSV** files.
 * **Mobile Responsive:** Optimized for usage on mobile devices and desktops.
 
 ## 🛠️ Tech Stack
 
 * **HTML5** - Structure
-* **CSS3** - Styling (Custom Responsive Design)
+* **CSS3** - Styling (Custom Responsive Design & Animations)
 * **JavaScript (ES6)** - Logic & DOM Manipulation
 * **Chart.js** - Data Visualization
 * **html2pdf.js** - PDF Generation
 
+## 💻 How to Run Locally
+
+To run this project on your local machine:
+
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/VaibhavS-17/student-expense-tracker.git](https://github.com/VaibhavS-17/student-expense-tracker.git)
+    ```
+2.  **Navigate to the project folder:**
+    ```bash
+    cd student-expense-tracker
+    ```
+3.  **Open `index.html`** in your browser.
+
 ## 👥 Project Members
 
 **Rajiv Gandhi Institute of Technology**
-*Branch: Computer Engineering*
+*Department of Computer Engineering*
 
 * **Vaibhav Sable** (Roll No. 616)
 * **Zaid Chouhan** (Roll No. 602)
@@ -35,7 +50,7 @@ A responsive web application designed to help students track their daily income 
 
 ## 📸 Screenshots
 
-
+*(Add screenshots of your dashboard here)*
 
 ---
 *This project was built as a Mini Project for the Computer Engineering curriculum.*
