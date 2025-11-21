@@ -2,7 +2,7 @@
 
 A responsive web application designed to help students track their daily income and expenses efficiently. This project features dynamic charts, local storage support, and report generation.
 
-**🔗 Live Demo:** [https://rgit-students-expense-tracker.netlify.app/](https://rgit-students-expense-tracker.netlify.app/)
+**🔗 Live Demo:** [[https://rgit-students-expense-tracker.netlify.app/](https://vaibhavs-17.github.io/student-expense-tracker/)](https://vaibhavs-17.github.io/student-expense-tracker/)
 
 ## 🚀 Features
 
