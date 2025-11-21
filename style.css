@@ -333,13 +333,17 @@ input[type=number]::-webkit-outer-spin-button {
     padding: 10px; /* Overrides the 28px from Desktop */
   }
   
-  /* 1. Tighter Header */
+    /* 1. Tighter Header */
   .header-row h1 {
-    font-size: 20px; 
+    font-size: 25px; /* Increased from 20px */
+    line-height: 1.2; /* Adds a little breathing room between lines */
+    margin-right: 10px; /* Ensures text doesn't touch the button */
   }
   .header-row {
     margin-bottom: 15px;
+    align-items: flex-start; /* Aligns title and button at the top nicely */
   }
+
   
   /* 2. Compact Summary Cards (Grid Layout) */
   .balance-container {
