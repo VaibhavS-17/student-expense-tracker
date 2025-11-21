@@ -28,18 +28,18 @@ To run this project on your local machine:
 
 1.  **Clone the repository:**
     ```bash
-    git clone [https://github.com/VaibhavS-17/student-expense-tracker.git](https://github.com/VaibhavS-17/student-expense-tracker.git)
+    git clone [https://github.com/VaibhavS-17/students-expense-tracker.git](https://github.com/VaibhavS-17/students-expense-tracker.git)
     ```
 2.  **Navigate to the project folder:**
     ```bash
-    cd student-expense-tracker
+    cd students-expense-tracker
     ```
 3.  **Open `index.html`** in your browser.
 
 ## 👥 Project Members
 
 **Rajiv Gandhi Institute of Technology**
-*Department of Computer Engineering*
+*Branch: Computer Engineering*
 
 * **Vaibhav Sable** (Roll No. 616)
 * **Zaid Chouhan** (Roll No. 602)
