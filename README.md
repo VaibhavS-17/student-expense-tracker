@@ -22,6 +22,15 @@ A responsive web application designed to help students track their daily income 
 * **Chart.js** - Data Visualization
 * **html2pdf.js** - PDF Generation
 
+## 📂 Directory Structure
+
+students-expense-tracker/
+├── index.html       # Main HTML structure
+├── style.css        # CSS with Dark Mode & Print variables
+├── script.js        # Logic (Chart.js, DOM manipulation, LocalStorage)
+└── README.md        # Documentation
+
+
 ## 💻 How to Run Locally
 
 To run this project on your local machine:
