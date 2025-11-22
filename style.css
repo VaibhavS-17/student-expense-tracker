@@ -89,11 +89,13 @@ body{
   transform: translateY(-2px);
 }
 .card h4{
-  font-size: 14px;
-  color: var(--muted);
-  font-weight: 400;
-  margin-bottom: 4px;
+  font-size: 16px;
+  color: #333333;
+  font-weight: 700;
+  margin-bottom: 8px;
+  letter-spacing: 0.5px;
 }
+
 .card .value{
   font-size: 22px;
   font-weight: 700;
@@ -305,7 +307,16 @@ body.dark-mode .chart-card, body.dark-mode .panel {
   background: #1e1e1e; color: #ffffff; box-shadow: 0 4px 10px rgba(0,0,0,0.5);
 }
 body.dark-mode input, body.dark-mode select { background: #2d2d2d; border-color: #444; color: #fff; }
-body.dark-mode h1, body.dark-mode h2, body.dark-mode h3, body.dark-mode label, body.dark-mode .tx-desc { color: #ffffff; }
+body.dark-mode h1, 
+body.dark-mode h2, 
+body.dark-mode h3, 
+body.dark-mode h4, 
+body.dark-mode .card h4,
+body.dark-mode label, 
+body.dark-mode .tx-desc { 
+  color: #ffffff; 
+}
+
 body.dark-mode .muted, body.dark-mode .tx-meta { color: #aaaaaa; }
 body.dark-mode #list li { background: #2d2d2d; border: 1px solid #333; }
 body.dark-mode #list li:hover { background: #383838; }
