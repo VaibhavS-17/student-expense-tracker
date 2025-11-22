@@ -195,26 +195,64 @@ button.danger{
   background:var(--danger);
 }
 
-/* filters */
-.filters{
-  display:flex;
-  gap:10px;
-  flex-wrap:wrap;
-  align-items:flex-end;
+/* ---- UPDATED FILTER STYLES ---- */
+
+.filters {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px; /* Increased gap to match form rows */
+  align-items: flex-start; /* Aligns labels to top */
 }
-.filters input, .filters select{
-  flex:1 1 120px;
-  padding:10px 12px;
-  border:1px solid #ddd;
-  border-radius:6px;
-  font-family:'Poppins', sans-serif;
-  font-size:14px;
-  color:#122023;
+
+/* This class mimics the ".row > div" style from the top form */
+.filter-group {
+  flex: 1 1 200px; /* Allows them to sit side-by-side on PC, stack on mobile */
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  width: 100%;
 }
-.filters button{
-  flex:0 0 auto;
-  white-space:nowrap;
+
+/* Exact label styling from the top form */
+.filter-group label {
+  font-size: 14px;
+  color: var(--accent-2);
+  font-weight: 600;
+  margin-left: 2px;
 }
+
+/* Input styling ensuring full width */
+.filter-group input, 
+.filter-group select {
+  width: 100%;
+  padding: 10px 12px;
+  border: 1px solid #ddd;
+  border-radius: 6px;
+  font-family: 'Poppins', sans-serif;
+  font-size: 14px;
+  color: #122023;
+}
+
+/* Filter Buttons Area */
+.filter-actions {
+  width: 100%;
+  display: flex;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: flex-end;
+}
+
+/* Mobile Tweaks for Filters */
+@media (max-width: 768px) {
+  .filter-actions {
+    flex-direction: column; /* Stack buttons on phone */
+  }
+  .filter-actions button {
+    width: 100%;
+    padding: 12px;
+  }
+}
+
 
 /* ---- FIX FOR FILTER DATE LABELS (GLOBAL) ---- */
 /* Placed here so it works on PC and Mobile */

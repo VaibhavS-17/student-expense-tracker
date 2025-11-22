@@ -88,13 +88,20 @@
       <div class="filter-card">
         <h3>Filter Transactions</h3>
         <div class="filters">
-          <input type="text" id="search-text" placeholder="Search description..." />
           
-          <select id="filter-category">
-            <option value="all">All Categories</option>
-          </select>
+          <div class="filter-group">
+            <label for="search-text">Search Description</label>
+            <input type="text" id="search-text" placeholder="e.g. Lunch..." />
+          </div>
           
-          <div class="filter-date-group">
+          <div class="filter-group">
+            <label for="filter-category">Category</label>
+            <select id="filter-category">
+              <option value="all">All Categories</option>
+            </select>
+          </div>
+          
+          <div class="filter-group">
             <label>From Date</label>
             <input 
               type="text" 
@@ -105,7 +112,7 @@
             />
           </div>
           
-          <div class="filter-date-group">
+          <div class="filter-group">
             <label>To Date</label>
             <input 
               type="text" 
@@ -116,10 +123,14 @@
             />
           </div>
 
-          <button id="apply-filters">Apply Filters</button>
-          <button id="clear-filters" class="secondary">Clear Filters</button>
+          <div class="filter-actions">
+            <button id="apply-filters">Apply Filters</button>
+            <button id="clear-filters" class="secondary">Clear Filters</button>
+          </div>
+
         </div>
       </div>
+
 
       <div id="report-area">
         <div class="history">
