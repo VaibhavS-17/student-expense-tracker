@@ -106,7 +106,7 @@ function addTransaction(e) {
   }
 
   const transaction = { id: generateId(), description, amount, category, date, type };
-  transactions.push(transaction);
+  transactions.unshift(transaction);
   saveTransactions();
   renderTransactions();
   txForm.reset();
@@ -175,9 +175,9 @@ function updateTransaction() {
 // 7. Render List & Update UI (UPDATED: Default Sorting)
 function renderTransactions(txs) {
   // Default: Sort by Date Descending (Newest First) if no filter is applied
-  if (!txs) {
+   if (!txs) {
     txs = transactions.slice().sort((a, b) => new Date(b.date) - new Date(a.date));
-  }
+   }
 
   listEl.innerHTML = '';
   if (txs.length === 0) {
