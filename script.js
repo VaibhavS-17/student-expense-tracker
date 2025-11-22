@@ -194,7 +194,7 @@ function renderTransactions(txs) {
               <div class="tx-meta">
                   <span>${t.category}</span>
                   <span>|</span>
-                  <span>${t.date}</span>
+                  <span>${new Date(t.date).toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' })}</span>
               </div>
           </div>
       </div>
@@ -448,5 +448,20 @@ document.getElementById('set-budget-btn').addEventListener('click', () => {
     showToast(`Budget limit set to ₹${input}`, 'success');
   } else if (input !== null) {
     showToast('Please enter a valid number!', 'error');
+  }
+});
+
+// Reset Budget Event Listener
+document.getElementById('reset-budget-btn').addEventListener('click', () => {
+  // Check if a budget is currently set
+  if (!localStorage.getItem('budgetLimit')) {
+    showToast('No budget limit to reset!', 'info');
+    return;
+  }
+
+  if (confirm("Are you sure you want to remove the monthly budget limit?")) {
+    localStorage.removeItem('budgetLimit'); // Remove from storage
+    updateBalance(); // Refresh the progress bar
+    showToast('Budget limit removed successfully', 'success');
   }
 });

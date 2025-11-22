@@ -45,9 +45,12 @@
 
 <div class="card" style="margin-bottom: 20px; text-align: left; padding: 15px;">
   <div style="display:flex; justify-content:space-between; align-items:center; margin-bottom:8px;">
-    <h4 style="margin:0;">Monthly Budget Goal</h4>
+  <h4 style="margin:0;">Monthly Budget Goal</h4>
+  <div style="display:flex; gap:5px;">
     <button id="set-budget-btn" style="padding:4px 10px; font-size:12px;">Set Limit</button>
+    <button id="reset-budget-btn" style="padding:4px 8px; font-size:12px; background:#e63946;" title="Remove Limit">✖</button>
   </div>
+</div>
   
   <div style="background:#e0e0e0; border-radius:20px; height:18px; width:100%; overflow:hidden; position:relative;">
     <div id="budget-bar" style="background:var(--accent); height:100%; width:0%; transition: width 0.6s ease, background-color 0.4s ease;"></div>
